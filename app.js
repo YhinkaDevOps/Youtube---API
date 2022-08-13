@@ -1,5 +1,18 @@
+const searchInput = document.querySelector('.search-bar');
+const searchBtn = document.querySelector('.search-btn');
+const videoContainer = document.querySelector('.video-container');
+let searchLink = "https://www.youtube.com/results?search_query=";
+// let watchLaterBtn = document.querySelector(".watchlater-btn");
 
-fetch("https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=8&regionCode=NG&key=AIzaSyCJ8IYdyJgbQqhUhoXl9gWNCRYJLJlUVqE")
+searchBtn.addEventListener('click', () => {
+    if(searchInput.value.length){
+        location.href = searchLink + searchInput.value;
+    }
+});
+
+
+
+fetch("https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=20&regionCode=NG&key=AIzaSyCJ8IYdyJgbQqhUhoXl9gWNCRYJLJlUVqE")
 .then((response)=>{
     return response.json()
 }).then((data)=>{
@@ -7,16 +20,17 @@ fetch("https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostP
     let videos = data.items
     let youtubeContainer =document.querySelector(".video-container")
     for(item of videos){
-        // console.log(`${item.snippet.channelTitle}`)
+        // console.log(`${item.id}`)
         youtubeContainer.innerHTML +=`
-            <div class="video" onclick="video_location = 'https'">
+            <div class="video" >
                 <div class="content">
-                	<img src="${item.snippet.thumbnails.high.url}" class="thumbnail" alt="">
+                	<img src="${item.snippet.thumbnails.high.url}" class="thumbnail" alt="" onclick="location.href ='https://www.youtube.com/watch?v=${item.id}'">
                     <div class="info">
-                        <h4 class="title">${item.snippet.title} </h4>
+                        <h5 class="title">${item.snippet.title} </h5>
                         <p class="channel-name">${item.snippet.channelTitle}</p>
                     </div>
                 </div>
+                <button class="watchlater-btn">Save to watch Later</button>
             <div>
         `
     }
@@ -26,13 +40,4 @@ fetch("https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostP
     console.log(error)
 })
 
-const searchInput = document.querySelector('.search-bar');
-const searchBtn = document.querySelector('.search-btn');
-let searchLink = "https://www.youtube.com/results?search_query=";
-
-searchBtn.addEventListener('click', () => {
-    if(searchInput.value.length){
-        location.href = searchLink + searchInput.value;
-    }
-})
 

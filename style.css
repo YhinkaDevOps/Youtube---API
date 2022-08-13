@@ -79,6 +79,10 @@ body{
     border: 2px solid #dbdbdb;
     padding: 5px 0;
     border-left: none;
+    cursor: pointer;
+}
+.search-btn:hover{
+    background-color: rgb(124, 120, 120);
 }
 
 .search-btn img{
@@ -188,10 +192,16 @@ body{
     font-size: 15px;
     cursor: pointer;
 }
+.filter-options:hover{
+    background: rgba(0, 0, 0, 0.1);
+}
 
 .filter-options.active{
     color: #fff;
     background: #242424;
+}
+.filter-options.active:hover{
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 /* video */
@@ -208,16 +218,27 @@ body{
 }
 
 .video{
-    min-height: 250px;
+    min-height: 270px;
     height: auto;
+    position: relative;
+ 
 }
+ .watchlater-btn:hover{
+  opacity: 1;
+}
+
 
 .thumbnail{
     width: 100%;
     height: 150px;
     object-fit: cover;
-    
+    cursor: pointer; 
 }
+
+.thumbnail:hover{
+    opacity: 0.2;   
+}
+
 
 .content{
     width: 100%;
@@ -246,4 +267,27 @@ body{
     font-size: 14px;
     margin: 2px 0;
     color: #979797;
+}
+
+.watchlater-btn{
+    /* margin-top: 120px; */
+    /* position: absolute; */
+    transform: translateY(139px);
+    float: right;
+    padding: 4px 4px 1px 1px;
+    /* opacity: 0; */
+    cursor: pointer;
+    border-radius: 2px;
+    background:#979797; 
+    outline: none;
+    border:none;
+    opacity:0;
+}
+.watchlater-btn:hover{
+   background: rgba(0, 0, 0, 0.491);
+   color: white
+}
+
+.video:hover .watchlater-btn{
+    opacity: 1;
 }
